@@ -45,6 +45,8 @@ namespace DiscordBot
 
         private void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<DiscordBotDbContext>(options =>{});
+
             services.AddSingleton(new DiscordSocketClient(new DiscordSocketConfig
             {                                       // Add discord to the collection
                 LogLevel = LogSeverity.Verbose,     // Tell the logger to give Verbose amount of info

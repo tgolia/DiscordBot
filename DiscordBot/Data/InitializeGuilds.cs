@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Discord.WebSocket;
 using DiscordBot.Models;
@@ -19,7 +20,8 @@ namespace DiscordBot.Data
             var guild = new Guild
             {
                 GuildId = guildParam.Id,
-                OwnerId = guildParam.OwnerId
+                OwnerId = guildParam.OwnerId,
+                GuildUsers = new List<GuildUser>()
             };
 
             await _context.Guilds.AddAsync(guild);

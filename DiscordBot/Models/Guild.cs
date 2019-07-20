@@ -7,7 +7,6 @@ namespace DiscordBot.Models
     {
         public int Id { get; set; }
         public ulong GuildId { get; set; }
-        public User Owner { get; set; }
         public ulong OwnerId { get; set; }
         public List<GuildUser> GuildUsers { get; set; }
 

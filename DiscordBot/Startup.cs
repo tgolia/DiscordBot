@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using DiscordBot.Data;
 using DiscordBot.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,6 +60,8 @@ namespace DiscordBot
                .AddSingleton<LoggingService>()         // Add loggingservice to the collection
                .AddSingleton<Random>()                 // Add random to the collection
                .AddSingleton(Configuration);           // Add the configuration to the collection
+
+            services.AddSingleton<IInitializeGuilds, InitializeGuilds>();
         }
     }
 }

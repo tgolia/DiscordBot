@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using DiscordBot.Data;
 using DiscordBot.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -38,6 +39,7 @@ namespace DiscordBot
             var provider = services.BuildServiceProvider();     // Build the service provider
             provider.GetRequiredService<LoggingService>();      // Start the logging service
             provider.GetRequiredService<CommandHandler>(); 		// Start the command handler service
+            //provider.GetRequiredService<DiscordBotDbContext>();
 
             await provider.GetRequiredService<StartupService>().StartAsync();       // Start the startup service
             await Task.Delay(-1);                               // Keep the program alive
@@ -45,7 +47,9 @@ namespace DiscordBot
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<DiscordBotDbContext>(options =>{});
+            services.AddDbContextPool<DiscordBotDbContext>(options =>{
+                options.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = DiscordBotData; Trusted_Connection = True;");
+            });
 
             services.AddSingleton(new DiscordSocketClient(new DiscordSocketConfig
             {                                       // Add discord to the collection

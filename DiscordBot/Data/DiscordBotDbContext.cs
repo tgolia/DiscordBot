@@ -18,12 +18,5 @@ namespace DiscordBot.Data
                 .HasKey(g => new { g.GuildId, g.UserId });
             base.OnModelCreating(modelBuilder);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                "Server = (localdb)\\mssqllocaldb; Database = DiscordBotData; Trusted_Connection = True; ");
-            base.OnConfiguring(optionsBuilder); 
-        }
     }
 }

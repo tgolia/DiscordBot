@@ -21,7 +21,7 @@ namespace DiscordBot.Modules
         {
             var guild = Context.Guild;
             _guildRepo.AddNewGuild(guild);
-            _guildRepo.SaveGuildUsers(guild);
+            //_guildRepo.SaveGuildUsers(guild);
             return Task.FromResult(true);
         }
     }
